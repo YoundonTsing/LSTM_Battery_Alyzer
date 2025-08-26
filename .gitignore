@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+battery_env/
+.env
+
+# Node.js
+node_modules/
+
+# Database files
+*.db
+*.sqlite3
+
+# IDE configuration
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/

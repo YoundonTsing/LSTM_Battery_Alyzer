@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+websockets
+python-socketio
+numpy
+pandas
+scikit-learn
+torch
+tensorflow
+matplotlib 
