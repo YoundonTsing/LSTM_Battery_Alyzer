@@ -7,7 +7,7 @@
 [![Vue.js 3.x](https://img.shields.io/badge/vue.js-3.x-green.svg)](https://vuejs.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://tensorflow.org/)
 
-> 一个集成了CNN+LSTM深度学习模型的电池剩余使用寿命(RUL)预测与智能充电优化系统，支持实时仿真、动态参数调控和充电策略智能优化。
+> 一个集成了CNN+LSTM深度学习模型的电池剩余使用寿命(RUL)预测与智能充电优化系统，实时仿真、动态参数调控和充电策略智能优化。
 
 ## 🎯 项目概述
 
