@@ -1,0 +1,8 @@
+Train data: ["C:/Projects/Battery_LSTM/RUL_prediction/data/NASA\\charge/train\\B0006_charge.csv", "C:/Projects/Battery_LSTM/RUL_prediction/data/NASA\\charge/train\\B0007_charge.csv"]
+Val data: ["C:/Projects/Battery_LSTM/RUL_prediction/data/NASA\\charge/train\\B0005_charge.csv"]
+Test data: ["C:/Projects/Battery_LSTM/RUL_prediction/data/NASA\\charge/test\\B0018_charge.csv"]
+
+Test Mean Absolute Error: "0.026925744488835335"
+Test Mean Square Error: "0.000943622668273747"
+Test Mean Absolute Percentage Error: "0.017623133957386017"
+Test Root Mean Squared Error: "0.030718441826918026"

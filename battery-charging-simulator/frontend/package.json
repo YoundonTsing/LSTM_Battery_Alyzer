@@ -1,0 +1,21 @@
+{
+  "name": "battery-charging-simulator-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5111",
+    "build": "vite build",
+    "preview": "vite preview --port 5111"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "chart.js": "^4.3.0",
+    "socket.io-client": "^4.7.1",
+    "vue-chartjs": "^5.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.0"
+  }
+} 

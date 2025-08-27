@@ -1,0 +1,68 @@
+RUL优化充电策略测试详细报告
+================================================================================
+测试时间: 2025-08-27 16:50:02
+测试地址: http://localhost:8001
+
+测试: 快速功能测试
+脚本: quick_rul_test.py
+结果: 失败
+耗时: 1.0秒
+必需: 是
+
+标准输出:
+测试地址: http://localhost:8001
+测试时间: 2025-08-27 16:49:58
+
+
+错误输出:
+Traceback (most recent call last):
+  File "C:\Projects\Battery_LSTM\quick_rul_test.py", line 248, in <module>
+    main()
+  File "C:\Projects\Battery_LSTM\quick_rul_test.py", line 243, in main
+    success = tester.run_quick_test()
+  File "C:\Projects\Battery_LSTM\quick_rul_test.py", line 187, in run_quick_test
+    print("\U0001f680 RUL优化充电策略快速测试")
+UnicodeEncodeError: 'gbk' codec can't encode character '\U0001f680' in position 0: illegal multibyte sequence
+
+
+------------------------------------------------------------
+
+测试: 策略切换测试
+脚本: test_charging_strategy_switch.py
+结果: 失败
+耗时: 1.0秒
+必需: 是
+
+标准输出:
+测试地址: http://localhost:8001
+测试时间: 2025-08-27 16:49:59
+
+
+错误输出:
+Traceback (most recent call last):
+  File "C:\Projects\Battery_LSTM\test_charging_strategy_switch.py", line 325, in <module>
+    main()
+  File "C:\Projects\Battery_LSTM\test_charging_strategy_switch.py", line 320, in main
+    success = tester.run_comprehensive_test()
+  File "C:\Projects\Battery_LSTM\test_charging_strategy_switch.py", line 284, in run_comprehensive_test
+    print("\U0001f50d 检查系统状态...")
+UnicodeEncodeError: 'gbk' codec can't encode character '\U0001f50d' in position 0: illegal multibyte sequence
+
+
+------------------------------------------------------------
+
+测试: 完整系统测试
+脚本: test_rul_optimization_system.py
+结果: 失败
+耗时: 3.1秒
+必需: 否
+
+错误输出:
+usage: test_rul_optimization_system.py [-h] [--backend-url BACKEND_URL]
+                                       [--frontend-url FRONTEND_URL]
+                                       [--test-category {all,model,rul,control,strategy,integration,performance}]
+test_rul_optimization_system.py: error: unrecognized arguments: http://localhost:8001
+
+
+------------------------------------------------------------
+

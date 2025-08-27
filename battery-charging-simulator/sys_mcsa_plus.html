@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车端系统与云端平台架构</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .architecture {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .system-container {
+            border: 3px solid #2980b9;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .system-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .section {
+            flex: 1;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #fff;
+        }
+        .section-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            background-color: #3498db;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .component {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .component-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .layer {
+            margin-left: 15px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .subcomponent {
+            margin-left: 25px;
+            margin-bottom: 5px;
+        }
+        .subitem {
+            margin-left: 35px;
+            margin-bottom: 3px;
+            font-size: 0.9em;
+        }
+        .connection {
+            text-align: center;
+            margin: 10px 0;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .arrow {
+            text-align: center;
+            margin: 5px 0;
+            font-size: 24px;
+            color: #3498db;
+        }
+        .arrow-right::after {
+            content: "→";
+            margin: 0 5px;
+        }
+        .arrow-down::after {
+            content: "↓";
+        }
+        .arrow-bidirectional::after {
+            content: "↔";
+            margin: 0 5px;
+        }
+        .network {
+            border: 1px dashed #95a5a6;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 15px 0;
+            background-color: #ecf0f1;
+        }
+        .network-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="architecture">
+        <!-- 车端系统 -->
+        <div class="system-container">
+            <div class="system-title">车端系统 (Vehicle)</div>
+            
+            <div class="row">
+                <!-- 物理层 -->
+                <div class="section">
+                    <div class="section-title">物理层 (Physical Layer)</div>
+                    
+                    <div class="component">
+                        <div class="component-title">驱动电机系统</div>
+                        
+                        <div class="subcomponent">
+                            <div>三相定子</div>
+                            <div class="subitem highlight">电流</div>
+                        </div>
+                        
+                        <div class="subcomponent">
+                            <div>电流传感器</div>
+                            <div class="subitem">高精度ADC</div>
+                            <div class="subitem">隔离, 车规级</div>
+                        </div>
+                        
+                        <div class="subcomponent">
+                            <div>电机控制器(逆变器)</div>
+                            <div class="subitem">可能集成传感器接口</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component">
+                        <div class="component-title">其他相关传感器</div>
+                        <div class="subitem">转速, 温度, 振动</div>
+                    </div>
+                </div>
+                
+                <!-- 区域/域控制器层 -->
+                <div class="section">
+                    <div class="section-title">区域/域控制器层<br>(动力域控制器 - PDC / 车辆运动域控制器)</div>
+                    
+                    <div class="component">
+                        <div class="component-title">动力域控制器 (PDC)</div>
+                        
+                        <div class="layer">应用层 (Application Layer):</div>
+                        <div class="subcomponent">电机控制算法 (FOC/SVPWM)</div>
+                        <div class="subcomponent highlight">MCSA信号预处理模块</div>
+                        <div class="subitem">原始电流数据接收 (ADC)</div>
+                        <div class="subitem">滤波 (抗混叠, 工频谐波滤除)</div>
+                        <div class="subitem">降噪 (小波, Kalman)</div>
+                        <div class="subitem highlight">实时FFT/STFT计算</div>
+                        <div class="subitem highlight">特征提取 (边带能量, etc.)</div>
+                        
+                        <div class="layer">服务层 (Service Layer):</div>
+                        <div class="subcomponent highlight">提供MCSA数据服务</div>
+                        <div class="subitem">发布原始/预处理数据 (信号/频谱)</div>
+                        <div class="subitem">发布特征向量/诊断事件</div>
+                        <div class="subcomponent">订阅其他域数据 (车速, 扭矩, 温度)</div>
+                        
+                        <div class="layer">基础软件层 (BSW - AUTOSAR CP/AP):</div>
+                        <div class="subcomponent highlight">通信栈 (CAN FD, FlexRay, Eth)</div>
+                        <div class="subcomponent highlight">复杂驱动 (CDD): ADC驱动</div>
+                        <div class="subcomponent">OS, 内存管理, 诊断服务</div>
+                    </div>
+                </div>
+                
+                <!-- 中央计算单元/网关 -->
+                <div class="section">
+                    <div class="section-title">中央计算单元/网关<br>(如：中央网关CGW, 车身域控BDC)</div>
+                    
+                    <div class="component">
+                        <div class="component-title">中央网关 (CGW)</div>
+                        <div class="subcomponent highlight">车内网络路由/协议转换</div>
+                        <div class="subitem">CAN FD -> SOME/IP, etc.</div>
+                        <div class="subcomponent highlight">安全网关 (SecGW)</div>
+                        <div class="subitem">防火墙, 入侵检测</div>
+                        <div class="subcomponent highlight">边缘AI推理 (可选)</div>
+                        <div class="subitem">轻量级异常检测模型</div>
+                        <div class="subcomponent">数据缓存/压缩</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 车内网络 -->
+            <div class="network">
+                <div class="network-title">车内网络 (In-Vehicle Network - IVN)</div>
+                <div class="row">
+                    <div class="component" style="flex: 1;">
+                        <div class="component-title">CAN FD Bus</div>
+                        <div class="subitem">传统动力信号</div>
+                        <div class="connection">(订阅MCSA服务)</div>
+                    </div>
+                    <div class="component" style="flex: 1;">
+                        <div class="component-title">车载以太网</div>
+                        <div class="subitem">SOME/IP, DDS</div>
+                        <div class="connection">(主要MCSA数据通道)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 连接箭头 -->
+        <div class="arrow arrow-down" style="text-align: center; font-size: 32px;">↓</div>
+        <div class="connection" style="text-align: center;">4G/5G, V2X</div>
+        
+        <!-- 云端平台 -->
+        <div class="system-container">
+            <div class="system-title">云端平台 (Cloud)</div>
+            
+            <div class="component">
+                <div class="component-title">数据湖 & 管理</div>
+                <div class="subcomponent">接收车端上传数据</div>
+                <div class="subcomponent">存储原始/预处理/特征数据</div>
+                <div class="subcomponent">关联车辆VIN、工况、时间戳</div>
+            </div>
+            
+            <div class="arrow" style="text-align: center;">↓</div>
+            
+            <div class="component">
+                <div class="component-title">AI诊断引擎</div>
+                <div class="subcomponent highlight">深度学习模型训练/推理</div>
+                <div class="subcomponent">故障诊断 (类型, 严重度)</div>
+                <div class="subcomponent">RUL预测</div>
+                <div class="subcomponent">生成报告/告警</div>
+                <div class="connection" style="text-align: right;">(反馈：模型更新、诊断规则)</div>
+            </div>
+            
+            <div class="arrow" style="text-align: center;">↓</div>
+            
+            <div class="component">
+                <div class="component-title">用户应用 & 服务</div>
+                <div class="subcomponent">工程师诊断平台</div>
+                <div class="subcomponent">车队管理看板</div>
+                <div class="subcomponent">车主APP预警</div>
+                <div class="subcomponent">服务工单系统</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
