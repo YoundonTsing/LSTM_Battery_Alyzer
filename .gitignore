@@ -1,26 +1,175 @@
-# Python
+# ====================================================================
+# LSTM Battery Analyzer - Git忽略文件
+# ====================================================================
+
+# ============= Python =============
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Virtual Environments
+# ============= 虚拟环境 =============
 venv/
+env/
+ENV/
+env.bak/
+venv.bak/
 battery_env/
-.env
+.venv/
 
-# Node.js
-node_modules/
-
-# Database files
-*.db
-*.sqlite3
-
-# IDE configuration
+# ============= IDE和编辑器 =============
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
 
-# Build artifacts
+# ============= Jupyter Notebook =============
+.ipynb_checkpoints
+*.ipynb
+
+# ============= 日志文件 =============
+*.log
+logs/
+*.out
+
+# ============= 数据库文件 =============
+*.db
+*.sqlite
+*.sqlite3
+charging_records.db
+
+# ============= 机器学习模型 =============
+# 保留示例模型，但忽略临时训练文件
+*.h5
+*.pkl
+*.joblib
+*.onnx
+# 保留已训练的.keras模型文件
+# *.keras
+
+# ============= 数据文件 =============
+# 忽略大数据文件
+*.csv
+*.xlsx
+*.parquet
+*.feather
+# 但保留示例数据
+!test_data/*.csv
+!**/example_data/*.csv
+
+# ============= 临时文件 =============
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# ============= 测试和覆盖率 =============
+.coverage
+.pytest_cache/
+.tox/
+htmlcov/
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# ============= 前端 =============
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
 dist/
 build/
-*.egg-info/
+
+# ============= 配置和密钥 =============
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+config.local.py
+secrets.json
+*.key
+*.pem
+
+# ============= 系统文件 =============
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ============= 压缩文件 =============
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ============= 特定于项目的忽略 =============
+# 训练过程中的临时文件
+RUL_prediction/saved/*/
+!RUL_prediction/saved/fusion/new_prep/*/saved_model_and_weight.keras
+
+# 上传的数据集
+RUL_prediction/data/uploads/
+!RUL_prediction/data/uploads/.gitkeep
+
+# 生成的报告文件
+*_report_*.txt
+*_report_*.html
+!Battery_LSTM_Project_Analysis_Report.html
+
+# 临时测试文件
+test_*.py
+!test_data/
+
+# ============= 大文件和媒体 =============
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.aac
+
+# ============= 文档构建 =============
+docs/_build/
+site/
+
+# ============= 其他 =============
+.cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
