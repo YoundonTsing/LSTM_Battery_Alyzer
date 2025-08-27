@@ -305,9 +305,9 @@ python test_400v_platform_conversion.py
 
 ## 📞 联系方式
 
-- **项目维护者**: [Your Name]
-- **邮箱**: your.email@example.com
-- **项目主页**: https://github.com/yourusername/LSTM_Battery_Analyzer
+- **项目维护者**: [YoundonTsing]
+- **邮箱**: 1939194239@qq.com
+- **项目主页**: https://github.com/YoundonTsing/LSTM_Battery_Analyzer
 
 ## 🗺️ 路线图
 
