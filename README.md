@@ -74,6 +74,24 @@
 
 
 
+
+
+<img width="537" height="484" alt="wechat_2025-08-28_162912_418" src="https://github.com/user-attachments/assets/5927afec-7dce-4add-8c8a-eb03df845b7b" />
+
+
+
+
+
+
+
+
+<img width="4112" height="6886" alt="deepseek_mermaid_20250828_ca2628" src="https://github.com/user-attachments/assets/61f25784-d36b-4bf9-a3ef-4aad7efc3012" />
+
+
+
+
+
+
 ## 🛠️ 技术栈
 
 ### 前端技术
